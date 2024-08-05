@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Clock Using JavaScript Easy Tutorials</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="hero">
+        <div class="container">
+            <div class="clock">
+                <span id="hrs">00</span> 
+                <span> : </span> 
+                <span id="min">00</span> 
+                <span> : </span>
+                <span id="sec">00</span>
+            </div>
+<center>
+            <div class="row mt-3 justify-content-center">
+                <button class="btn btn-success mx-2" style="    background: transparent;
+    border: none;"
+                        id="start"><img src="start.png"  alt=""></button>
+                <button class="btn btn-primary mx-2" style="    background: transparent;
+    border: none;"
+                        id="stop"><img src="pause.png" alt=""></button>
+                <button class="btn btn-danger mx-2" style="    background: transparent;
+    border: none;"
+                        id="reset"><img src="reset.png" alt=""></button>
+            </div>
+        </center>
+        </div>
+    </div>
+
+
+    <script>
+ let startBtn = document.getElementById('start');
+        let stopBtn = document.getElementById('stop');
+        let resetBtn = document.getElementById('reset');
+ 
+        let hour = 0;
+        let minute = 0;
+        let second = 0;
+        let count = 0;
+        let timer;
+ 
+        startBtn.addEventListener('click', function () {
+            // Check if timer is not already running
+            if (!timer) {
+                timer = setInterval(stopWatch, 10);
+            }
+        });
+ 
+        stopBtn.addEventListener('click', function () {
+            clearInterval(timer);
+            timer = null; // Reset timer variable
+        });
+ 
+        resetBtn.addEventListener('click', function () {
+            clearInterval(timer);
+            timer = null; // Reset timer variable
+            hour = 0;
+            minute = 0;
+            second = 0;
+            count = 0;
+            updateDisplay();
+        });
+ 
+        function stopWatch() {
+            count++;
+ 
+            if (count == 100) {
+                second++;
+                count = 0;
+            }
+ 
+            if (second == 60) {
+                minute++;
+                second = 0;
+            }
+ 
+            if (minute == 60) {
+                hour++;
+                minute = 0;
+                second = 0;
+            }
+ 
+            updateDisplay();
+        }
+ 
+        function updateDisplay() {
+            document.getElementById('hrs').textContent =
+                hour.toString().padStart(2, '0');
+            document.getElementById('min').textContent =
+                minute.toString().padStart(2, '0');
+            document.getElementById('sec').textContent =
+                second.toString().padStart(2, '0');
+            document.getElementById('count').textContent =
+                count.toString().padStart(2, '0');
+        }
+    </script>
+</body>
+
+</html>
